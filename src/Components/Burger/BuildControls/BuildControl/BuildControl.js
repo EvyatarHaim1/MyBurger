@@ -1,9 +1,12 @@
 import React from 'react';
 import buildControls from '../BuildControls';
+import classes from './buildControl.css';
 
 const buildControl = (props) => (
-      <div>
-          <div></div>
+      <div className={classes.buildControl}>
+          <div className={classes.Label}> {props.label}</div>
+          <button className={classes.Less}>Less</button>
+          <button className={classes.More}>More</button>
       </div>
 )
 
