@@ -82,13 +82,20 @@ import Input from '../../../components/UI/Input/Input';
                                   {value: 'cheapest', displayValue: 'Cheapest'}
                     ]
                     },
+                    value: 'fastest',
+                    validation: {},
+                    valid: true
          }
         },
+        formIsValid: false,
          loading: false
      }
 
     checkValidity = (value, rules) => {
       let isValid = true;
+      if (!rules){
+        return true;
+      }
       if (rules.required ){
           isValid = value.trim() !=='' && isValid;
       }
@@ -134,8 +141,12 @@ import Input from '../../../components/UI/Input/Input';
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        console.log(updatedFormElement);
-        this.setState({orderForm: updatedOrderForm});
+        
+        let formIsvalid = true;
+        for (let inputIdentifier in updatedOrderForm ){
+            formIsvalid = updatedOrderForm[inputIdentifier].valid && formIsvalid;
+        }
+        this.setState({orderForm: updatedOrderForm, formIsValid: formIsvalid});
     }
 
     render() {
@@ -159,7 +170,7 @@ import Input from '../../../components/UI/Input/Input';
                    touched={formElement.config.touched}
                    changed={(event)=> this.inputChangedHandler(event, formElement.id)}/>
         ))}
-        <Button btnType="Success" clicked={this.orderHandler}> ORDER </Button>
+        <Button btnType="Success" disabled={!this.state.formIsValid} clicked={this.orderHandler}> ORDER </Button>
     </form>
       );
       if(this.state.loading){
