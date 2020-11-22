@@ -5,6 +5,9 @@ My Burger:
 * CSS Modules Structure 
 * React-Router - Routing
 * Redux - State Managment
+* Material-UI
+* Full-Responsive Design
+* Local-Storage - holding the refresh-token
 
 App Url - https://react-my-burger-40e0c.web.app/
 
