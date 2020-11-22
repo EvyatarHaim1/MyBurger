@@ -8,6 +8,11 @@
     height: 100%;
 }
 
+.helloUser{
+    color: white;
+    margin-right: 900px;
+}
+
 @media (min-width: 500px) {
     .NavigationItems {
         flex-flow: row;
